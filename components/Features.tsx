@@ -4,20 +4,20 @@ import { Rocket, Box, Zap } from 'lucide-react';
 const features = [
   {
     icon: <Rocket className="w-8 h-8 text-indigo-400" />,
-    title: "Animações Cinematográficas",
-    desc: "Desenvolvido com GSAP & ScrollTrigger para design de movimento premiado.",
+    title: "Movimento que Vende",
+    desc: "Animações não são enfeites - são gatilhos de conversão. GSAP + ScrollTrigger para experiências que prendem a atenção e convertem visitantes em clientes.",
     gradient: "from-indigo-500/20 to-blue-500/5"
   },
   {
     icon: <Box className="w-8 h-8 text-pink-400" />,
-    title: "Experiências 3D Imersivas",
-    desc: "Integração WebGL & Three.js para profundidade e interatividade total.",
+    title: "Dimensão Competitiva",
+    desc: "Enquanto seus concorrentes usam carrosséis, você terá universos 3D interativos. Three.js + WebGL para diferenciação impossível de copiar.",
     gradient: "from-pink-500/20 to-rose-500/5"
   },
   {
     icon: <Zap className="w-8 h-8 text-teal-400" />,
-    title: "Performance Otimizada",
-    desc: "Carregamento ultra-rápido com pontuação 99+ no Lighthouse.",
+    title: "Velocidade = Receita",
+    desc: "Cada 100ms de atraso = 7% menos conversões. Entregamos sites que carregam em menos de 1.5s e pontuam 90+ no Lighthouse. Sempre.",
     gradient: "from-teal-500/20 to-emerald-500/5"
   }
 ];
