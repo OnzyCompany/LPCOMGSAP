@@ -32,34 +32,29 @@ const steps = [
   }
 ];
 
-// Connectivity Lines Component
+// Connectivity Lines Component with Strong Beam
 const ProcessConnectivity = () => (
     <div className="absolute inset-0 pointer-events-none z-0 hidden md:block">
         <style>{`
           @keyframes beam-flow-process {
-            to { stroke-dashoffset: -100; }
+            to { stroke-dashoffset: -200; }
           }
           .animate-beam-process {
-            stroke-dasharray: 10 90;
-            animation: beam-flow-process 3s linear infinite;
+            stroke-dasharray: 20 180;
+            animation: beam-flow-process 2.5s linear infinite;
+            filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.8));
           }
         `}</style>
         <svg className="w-full h-full" preserveAspectRatio="none">
              <defs>
-                <linearGradient id="process-beam" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#6366f1" stopOpacity="0" />
-                    <stop offset="50%" stopColor="#ec4899" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#14b8a6" stopOpacity="0" />
+                <linearGradient id="process-beam" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#818cf8" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
                 </linearGradient>
             </defs>
             
-            {/* 
-               Drawing connections for a 2x2 grid approx.
-               Card 1 (25% 25%) -> Card 2 (75% 25%) -> Card 3 (25% 75%) -> Card 4 (75% 75%) 
-               Using percentages for responsive scaling within the absolute container.
-            */}
-            
-            <g fill="none" strokeWidth="2">
+            <g fill="none" strokeWidth="4" strokeLinecap="round">
                 {/* Track */}
                 <path d="M 25% 25% L 75% 25% L 25% 75% L 75% 75%" stroke="rgba(255,255,255,0.05)" />
                 

@@ -28,7 +28,7 @@ const features = [
 
 const Features: React.FC = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-16 px-4 md:px-0">
+    <div className="flex flex-wrap justify-center gap-32 px-4 md:px-0 py-10">
       {features.map((feature, idx) => (
         <React.Fragment key={idx}>
           <PinContainer title={feature.pinTitle} href="#">

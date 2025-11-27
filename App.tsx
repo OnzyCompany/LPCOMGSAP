@@ -32,9 +32,13 @@ const App: React.FC = () => {
     const outline = cursorOutlineRef.current;
     const moveCursor = (e: MouseEvent) => {
       if (cursor && outline) {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-        outline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 500, fill: "forwards" });
+        // Direct DOM manipulation for performance
+        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+        
+        // Use animate for smooth trailing effect on outline
+        outline.animate({ 
+            transform: `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`
+        }, { duration: 500, fill: "forwards" });
       }
     };
     window.addEventListener('mousemove', moveCursor);
@@ -134,14 +138,14 @@ const App: React.FC = () => {
   return (
     <div ref={containerRef} className="bg-slate-950 text-slate-50 relative selection:bg-pink-500/30">
       
+      {/* Custom Cursor moved to top level */}
+      <div ref={cursorRef} className="cursor-dot hidden md:block mix-blend-difference fixed z-[9999] pointer-events-none w-2 h-2 bg-white rounded-full top-0 left-0" />
+      <div ref={cursorOutlineRef} className="cursor-outline hidden md:block mix-blend-difference fixed z-[9999] pointer-events-none w-10 h-10 border border-white/50 rounded-full top-0 left-0" />
+
       {/* SCROLL TRACK */}
       <div className="scroll-track h-[2500vh] w-full absolute top-0 left-0 z-[-1]" />
 
       <ThreeHero />
-
-      {/* Custom Cursor */}
-      <div ref={cursorRef} className="cursor-dot hidden md:block mix-blend-difference fixed z-[100] pointer-events-none w-2 h-2 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
-      <div ref={cursorOutlineRef} className="cursor-outline hidden md:block mix-blend-difference fixed z-[100] pointer-events-none w-10 h-10 border border-white/50 rounded-full transition-all duration-200 -translate-x-1/2 -translate-y-1/2" />
 
       <main className="fixed inset-0 w-full h-full overflow-hidden perspective-container flex items-center justify-center">
         
@@ -175,7 +179,8 @@ const App: React.FC = () => {
                     </button>
                 </div>
             </div>
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 animate-bounce">
+            {/* Seta Centralizada com w-full */}
+            <div className="absolute bottom-10 w-full flex flex-col items-center gap-2 opacity-60 animate-bounce">
                 <span className="text-xs uppercase tracking-widest text-slate-400">Role para entrar</span>
                 <ChevronDown className="w-6 h-6 text-slate-400" />
             </div>
@@ -222,7 +227,7 @@ const App: React.FC = () => {
             </div>
         </section>
 
-        {/* --- SECTION 3: FEATURES (Tecnologia Alienígena) - NOW WITH 3D PIN --- */}
+        {/* --- SECTION 3: FEATURES (Tecnologia Alienígena) --- */}
         <section id="features-section" className="absolute inset-0 flex items-center justify-center z-20 opacity-0 pointer-events-none origin-center will-change-transform">
              <div className="max-w-7xl mx-auto w-full px-6">
                 <div className="text-center mb-16">
@@ -243,7 +248,7 @@ const App: React.FC = () => {
             </div>
         </section>
 
-        {/* --- SECTION 5: TECH ARSENAL (Armados com o Futuro) - NOW WITH DATABASE VISUAL --- */}
+        {/* --- SECTION 5: TECH ARSENAL (Armados com o Futuro) --- */}
         <section id="tech-section" className="absolute inset-0 flex items-center justify-center z-20 opacity-0 pointer-events-none origin-center will-change-transform">
             <div className="max-w-7xl mx-auto w-full px-6 flex flex-col justify-center">
                 <TechStack />
@@ -261,7 +266,7 @@ const App: React.FC = () => {
              </div>
         </section>
 
-        {/* --- SECTION 7: METRICS (Números que Falam) - NOW WITH HUD DASHBOARD --- */}
+        {/* --- SECTION 7: METRICS (Números que Falam) --- */}
         <section id="metrics-section" className="absolute inset-0 flex items-center justify-center z-10 opacity-0 pointer-events-none origin-center will-change-transform bg-slate-900/80 backdrop-blur-xl">
              <div className="max-w-6xl mx-auto w-full px-6">
                 <div className="text-center mb-12">
@@ -282,7 +287,7 @@ const App: React.FC = () => {
              </div>
         </section>
 
-        {/* --- SECTION 9: GUARANTEES (Promessas Blindadas) - NOW WITH GLOWING GRID --- */}
+        {/* --- SECTION 9: GUARANTEES (Promessas Blindadas) --- */}
         <section id="guarantees-section" className="absolute inset-0 flex items-center justify-center z-10 opacity-0 pointer-events-none origin-center will-change-transform">
              <div className="max-w-6xl mx-auto w-full px-6">
                 <div className="text-center mb-10">
@@ -307,9 +312,15 @@ const App: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col items-center gap-4">
-                    <button className="px-12 py-6 bg-white text-black rounded-full font-bold text-xl hover:scale-110 transition-transform shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+                    {/* Botão transformado em Link WhatsApp */}
+                    <a 
+                      href="https://wa.me/5573998306902?text=Ol%C3%A1%2C%20gostaria%20de%20reservar%20uma%20vaga%20para%20criar%20meu%20portal%20com%20a%20Onzy." 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="px-12 py-6 bg-white text-black rounded-full font-bold text-xl hover:scale-110 transition-transform shadow-[0_0_40px_rgba(255,255,255,0.2)] inline-block"
+                    >
                         Reservar Minha Vaga
-                    </button>
+                    </a>
                     <span className="text-xs text-slate-500 uppercase tracking-widest">⚡ Resposta em até 2h úteis</span>
                 </div>
 
