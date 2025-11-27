@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
+        darkMode: "class",
         theme: {
           extend: {
             fontFamily: {
@@ -19,7 +20,13 @@
               secondary: '#ec4899',
               accent: '#14b8a6',
               dark: '#0f172a',
-              'card-bg': 'rgba(30, 41, 59, 0.5)',
+              border: "rgba(255,255,255,0.1)",
+              background: "#0f172a",
+              foreground: "#f8fafc",
+              muted: {
+                DEFAULT: "rgba(30, 41, 59, 0.5)",
+                foreground: "#94a3b8"
+              }
             },
             backgroundImage: {
               'hero-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -70,6 +77,14 @@
         perspective: 1000px;
         transform-style: preserve-3d;
       }
+
+      /* Premium Glassmorphism */
+      .glass-card {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      }
     </style>
   <script type="importmap">
 {
@@ -81,7 +96,11 @@
     "three": "https://aistudiocdn.com/three@^0.181.2",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "gsap/": "https://aistudiocdn.com/gsap@^3.13.0/",
-    "gsap": "https://aistudiocdn.com/gsap@^3.13.0"
+    "gsap": "https://aistudiocdn.com/gsap@^3.13.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^11.0.0",
+    "motion/react": "https://aistudiocdn.com/framer-motion@^11.0.0",
+    "clsx": "https://aistudiocdn.com/clsx@^2.1.0",
+    "tailwind-merge": "https://aistudiocdn.com/tailwind-merge@^2.2.0"
   }
 }
 </script>

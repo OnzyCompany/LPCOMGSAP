@@ -1,49 +1,85 @@
 import React from 'react';
 import { Rocket, Box, Zap } from 'lucide-react';
+import { PinContainer } from './ui/3d-pin';
 
 const features = [
   {
     icon: <Rocket className="w-8 h-8 text-indigo-400" />,
     title: "Movimento que Vende",
-    desc: "Animações não são enfeites - são gatilhos de conversão. GSAP + ScrollTrigger para experiências que prendem a atenção e convertem visitantes em clientes.",
-    gradient: "from-indigo-500/20 to-blue-500/5"
+    desc: "Animações não são enfeites - são gatilhos de conversão. GSAP + ScrollTrigger para experiências que prendem a atenção.",
+    gradient: "from-indigo-500/20 to-blue-500/5",
+    pinTitle: "GSAP Motion"
   },
   {
     icon: <Box className="w-8 h-8 text-pink-400" />,
     title: "Dimensão Competitiva",
-    desc: "Enquanto seus concorrentes usam carrosséis, você terá universos 3D interativos. Three.js + WebGL para diferenciação impossível de copiar.",
-    gradient: "from-pink-500/20 to-rose-500/5"
+    desc: "Enquanto seus concorrentes usam carrosséis, você terá universos 3D interativos. Three.js + WebGL.",
+    gradient: "from-pink-500/20 to-rose-500/5",
+    pinTitle: "Three.js 3D"
   },
   {
     icon: <Zap className="w-8 h-8 text-teal-400" />,
     title: "Velocidade = Receita",
-    desc: "Cada 100ms de atraso = 7% menos conversões. Entregamos sites que carregam em menos de 1.5s e pontuam 90+ no Lighthouse. Sempre.",
-    gradient: "from-teal-500/20 to-emerald-500/5"
+    desc: "Cada 100ms de atraso = 7% menos conversões. Entregamos sites que carregam em menos de 1.5s.",
+    gradient: "from-teal-500/20 to-emerald-500/5",
+    pinTitle: "Performance"
   }
 ];
 
 const Features: React.FC = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-0">
+    <div className="flex flex-wrap justify-center gap-16 px-4 md:px-0">
       {features.map((feature, idx) => (
-        <div 
-          key={idx}
-          className="group relative p-8 rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm overflow-hidden hover:-translate-y-2 transition-transform duration-500"
-        >
-          {/* Gradient Bg on Hover */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-          
-          <div className="relative z-10">
-            <div className="w-16 h-16 rounded-2xl bg-slate-800 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-slate-700">
-              {feature.icon}
+        <React.Fragment key={idx}>
+          <PinContainer title={feature.pinTitle} href="#">
+            <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-[20rem] h-[20rem] bg-slate-900 border border-slate-800 rounded-2xl group">
+              {/* Header */}
+              <div className="flex items-center gap-2 mb-4">
+                  <div className="size-3 rounded-full bg-indigo-500 animate-pulse" />
+                  <div className="text-xs text-slate-400">Onzy Tech Core</div>
+              </div>
+
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center mb-6 border border-slate-700 group-hover:scale-110 transition-transform">
+                  {feature.icon}
+              </div>
+
+              <div className="flex-1 space-y-2">
+                <h3 className="text-xl font-bold text-slate-100">{feature.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  {feature.desc}
+                </p>
+              </div>
+
+              {/* Animated Waves */}
+              <div className="relative h-12 overflow-hidden mt-4 opacity-30">
+                  {[1, 2, 3].map((i) => (
+                      <div 
+                      key={i}
+                      className="absolute w-full h-12"
+                      style={{
+                          background: `linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.2) 50%, transparent 100%)`,
+                          animation: `wave ${2 + i * 0.5}s ease-in-out infinite`,
+                          opacity: 0.3 / i,
+                          transform: `translateY(${i * 5}px)`,
+                      }}
+                      />
+                  ))}
+              </div>
             </div>
-            <h3 className="text-xl font-display font-bold text-white mb-3">{feature.title}</h3>
-            <p className="text-slate-400 leading-relaxed group-hover:text-slate-200 transition-colors">
-              {feature.desc}
-            </p>
-          </div>
-        </div>
+          </PinContainer>
+        </React.Fragment>
       ))}
+      <style>{`
+        @keyframes wave {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+      `}</style>
     </div>
   );
 };
