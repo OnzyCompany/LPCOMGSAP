@@ -18,7 +18,7 @@ const ImageGen: React.FC = () => {
       const url = await generateImage(prompt, size);
       setGeneratedUrl(url);
     } catch (e) {
-      alert("Failed to generate image. Please try again.");
+      alert("Falha ao gerar imagem. Por favor, tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -29,7 +29,7 @@ const ImageGen: React.FC = () => {
     setEnhancing(true);
     try {
       // Use Flash Lite for fast prompt enhancement
-      const enhanced = await fastGenerate(`Rewrite this image prompt to be more descriptive and artistic for a high-end AI image generator. Keep it under 50 words. Prompt: "${prompt}"`);
+      const enhanced = await fastGenerate(`Reescreva este prompt de imagem para ser mais descritivo e artístico para um gerador de imagem de IA high-end. Mantenha em inglês para melhor compatibilidade com o modelo, mas com menos de 50 palavras. Prompt original: "${prompt}"`);
       if (enhanced) setPrompt(enhanced.trim());
     } catch (e) {
       // silent fail
@@ -48,8 +48,8 @@ const ImageGen: React.FC = () => {
                     <Wand2 className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                    <h3 className="text-2xl font-display font-bold text-white">AI Studio Generator</h3>
-                    <p className="text-slate-400 text-sm">Powered by Gemini 3 Pro Vision</p>
+                    <h3 className="text-2xl font-display font-bold text-white">Estúdio Criativo AI</h3>
+                    <p className="text-slate-400 text-sm">Powered by Gemini 3 Pro Image</p>
                 </div>
             </div>
 
@@ -58,7 +58,7 @@ const ImageGen: React.FC = () => {
                     <textarea
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)}
-                        placeholder="Describe the image you want to create (e.g., 'A futuristic city made of glass floating in the clouds')..."
+                        placeholder="Descreva a imagem que você deseja criar (ex: 'Uma cidade futurista feita de vidro flutuando nas nuvens')..."
                         className="w-full h-32 bg-slate-900/80 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-indigo-500 transition-all resize-none placeholder:text-slate-600"
                     />
                     <button
@@ -67,7 +67,7 @@ const ImageGen: React.FC = () => {
                         className="absolute bottom-4 right-4 text-xs flex items-center gap-1 text-indigo-400 hover:text-indigo-300 transition-colors disabled:opacity-50"
                     >
                         {enhancing ? <Loader2 className="w-3 h-3 animate-spin" /> : <Zap className="w-3 h-3" />}
-                        Enhance Prompt (Flash Lite)
+                        Melhorar Prompt (Flash Lite)
                     </button>
                 </div>
 
@@ -96,12 +96,12 @@ const ImageGen: React.FC = () => {
                         {loading ? (
                             <>
                                 <Loader2 className="w-5 h-5 animate-spin" />
-                                Generating...
+                                Gerando...
                             </>
                         ) : (
                             <>
                                 <Sparkles className="w-5 h-5" />
-                                Generate Art
+                                Criar Arte
                             </>
                         )}
                     </button>
@@ -114,7 +114,7 @@ const ImageGen: React.FC = () => {
                     <div className="relative rounded-2xl overflow-hidden border border-slate-700 group/image shadow-2xl">
                         <img 
                             src={generatedUrl} 
-                            alt="Generated Art" 
+                            alt="Arte Gerada" 
                             className="w-full aspect-square object-cover"
                         />
                         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/image:opacity-100 transition-opacity flex items-center justify-center gap-4">

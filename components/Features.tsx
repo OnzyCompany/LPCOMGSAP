@@ -4,20 +4,20 @@ import { Rocket, Box, Zap } from 'lucide-react';
 const features = [
   {
     icon: <Rocket className="w-8 h-8 text-indigo-400" />,
-    title: "Cinematic Animations",
-    desc: "Powered by GSAP & ScrollTrigger for award-winning motion design.",
+    title: "Animações Cinematográficas",
+    desc: "Desenvolvido com GSAP & ScrollTrigger para design de movimento premiado.",
     gradient: "from-indigo-500/20 to-blue-500/5"
   },
   {
     icon: <Box className="w-8 h-8 text-pink-400" />,
-    title: "Immersive 3D",
-    desc: "WebGL & Three.js integration for depth and interactivity.",
+    title: "Experiências 3D Imersivas",
+    desc: "Integração WebGL & Three.js para profundidade e interatividade total.",
     gradient: "from-pink-500/20 to-rose-500/5"
   },
   {
     icon: <Zap className="w-8 h-8 text-teal-400" />,
-    title: "Ultra Performance",
-    desc: "Optimized for speed with 99+ Lighthouse scores.",
+    title: "Performance Otimizada",
+    desc: "Carregamento ultra-rápido com pontuação 99+ no Lighthouse.",
     gradient: "from-teal-500/20 to-emerald-500/5"
   }
 ];

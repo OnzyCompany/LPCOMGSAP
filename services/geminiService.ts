@@ -14,15 +14,15 @@ export const sendMessageToChat = async (history: { role: string; parts: { text: 
       model: 'gemini-3-pro-preview',
       history: history,
       config: {
-        systemInstruction: "You are Lumina, a helpful AI assistant for a premium web design agency. You are knowledgeable about web development, 3D design, and digital marketing. Be concise, professional, and friendly.",
+        systemInstruction: "Você é a Onzy, uma assistente de IA útil para uma agência de web design premium e futurista. Você tem conhecimento sobre desenvolvimento web, design 3D, WebGL e marketing digital. Seja conciso, profissional, criativo e amigável. Responda sempre em Português do Brasil.",
       },
     });
 
     const response: GenerateContentResponse = await chat.sendMessage({ message });
-    return response.text || "I'm sorry, I couldn't generate a response.";
+    return response.text || "Desculpe, não consegui gerar uma resposta.";
   } catch (error) {
     console.error("Chat Error:", error);
-    return "An error occurred while connecting to the AI.";
+    return "Ocorreu um erro ao conectar com a IA.";
   }
 };
 

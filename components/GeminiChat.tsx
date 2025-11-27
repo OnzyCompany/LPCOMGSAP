@@ -6,7 +6,7 @@ import { MessageSquare, X, Send, Loader2, Sparkles } from 'lucide-react';
 const GeminiChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: 'Hello! I am Lumina AI. Ask me anything about our web design services or 3D capabilities.' }
+    { role: 'model', text: 'Olá! Sou a IA da Onzy. Pergunte-me qualquer coisa sobre nossos serviços de web design imersivos.' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +38,7 @@ const GeminiChat: React.FC = () => {
       const responseText = await sendMessageToChat(history, input);
       setMessages(prev => [...prev, { role: 'model', text: responseText }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'model', text: "Sorry, I encountered an error." }]);
+      setMessages(prev => [...prev, { role: 'model', text: "Desculpe, ocorreu um erro." }]);
     } finally {
       setIsLoading(false);
     }
@@ -71,7 +71,7 @@ const GeminiChat: React.FC = () => {
         <div className="flex items-center justify-between p-4 border-b border-slate-700 bg-slate-800/50 rounded-t-2xl">
           <div className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-indigo-400" />
-            <h3 className="font-display font-bold text-white">Lumina AI Assistant</h3>
+            <h3 className="font-display font-bold text-white">Assistente Onzy AI</h3>
           </div>
           <button 
             onClick={() => setIsOpen(false)}
@@ -103,7 +103,7 @@ const GeminiChat: React.FC = () => {
             <div className="flex justify-start">
               <div className="bg-slate-800 p-3 rounded-2xl rounded-bl-none border border-slate-700 flex items-center gap-2">
                 <Loader2 className="w-4 h-4 animate-spin text-indigo-400" />
-                <span className="text-xs text-slate-400">Thinking...</span>
+                <span className="text-xs text-slate-400">Pensando...</span>
               </div>
             </div>
           )}
@@ -123,7 +123,7 @@ const GeminiChat: React.FC = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about our services..."
+              placeholder="Pergunte sobre nossos serviços..."
               className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder:text-slate-600"
             />
             <button
