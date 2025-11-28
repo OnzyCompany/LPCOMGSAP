@@ -27,30 +27,36 @@ const App: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Optimized Cursor Logic with GSAP quickTo
   useEffect(() => {
     const cursor = cursorRef.current;
     const outline = cursorOutlineRef.current;
     
-    // Initial hide to prevent top-left glitch
-    if (cursor) cursor.style.opacity = '0';
-    if (outline) outline.style.opacity = '0';
+    if (cursor && outline) {
+      // Use gsap.quickTo for high-performance following without lag
+      const xToCursor = gsap.quickTo(cursor, "x", { duration: 0.1, ease: "power3" });
+      const yToCursor = gsap.quickTo(cursor, "y", { duration: 0.1, ease: "power3" });
+      const xToOutline = gsap.quickTo(outline, "x", { duration: 0.3, ease: "power3" });
+      const yToOutline = gsap.quickTo(outline, "y", { duration: 0.3, ease: "power3" });
 
-    const moveCursor = (e: MouseEvent) => {
-      if (cursor && outline) {
-        cursor.style.opacity = '1';
-        outline.style.opacity = '1';
+      // Initial hide
+      gsap.set([cursor, outline], { xPercent: -50, yPercent: -50, opacity: 0 });
+
+      const moveCursor = (e: MouseEvent) => {
+        // Reveal on first move
+        if (cursor.style.opacity === '0') {
+           gsap.to([cursor, outline], { opacity: 1, duration: 0.3 });
+        }
         
-        // Direct DOM manipulation for performance
-        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-        
-        // Use animate for smooth trailing effect on outline
-        outline.animate({ 
-            transform: `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`
-        }, { duration: 500, fill: "forwards" });
-      }
-    };
-    window.addEventListener('mousemove', moveCursor);
-    return () => window.removeEventListener('mousemove', moveCursor);
+        xToCursor(e.clientX);
+        yToCursor(e.clientY);
+        xToOutline(e.clientX);
+        yToOutline(e.clientY);
+      };
+
+      window.addEventListener('mousemove', moveCursor);
+      return () => window.removeEventListener('mousemove', moveCursor);
+    }
   }, []);
 
   // --- THE FLY THROUGH LOGIC ---
@@ -104,10 +110,10 @@ const App: React.FC = () => {
       // 3. FEATURES (20% - 30%)
       addSectionAnimation("#features-section", 5.0, 2.5);
 
-      // 4. PROCESS (30% - 40%) - Reverted duration
+      // 4. PROCESS (30% - 40%)
       addSectionAnimation("#process-section", 7.5, 2.5); 
 
-      // 5. TECH ARSENAL (40% - 50%) - Reverted duration
+      // 5. TECH ARSENAL (40% - 50%)
       addSectionAnimation("#tech-section", 10.0, 2.5);
 
       // 6. PORTFOLIO (50% - 62%)

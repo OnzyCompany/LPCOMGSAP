@@ -55,7 +55,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); /* Centraliza o cursor */
         border-radius: 50%;
         z-index: 9999;
         pointer-events: none;
@@ -69,7 +69,6 @@
         width: 40px;
         height: 40px;
         border: 1px solid rgba(255, 255, 255, 0.5);
-        transition: width 0.2s, height 0.2s, background-color 0.2s;
       }
       
       /* Perspective container for the Fly-Through effect */
@@ -89,23 +88,19 @@
   <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react/": "https://esm.sh/react@18.2.0/",
-    "react-dom": "https://esm.sh/react-dom@18.2.0",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "three": "https://esm.sh/three@0.160.0",
-    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react,react-dom",
-    "gsap": "https://esm.sh/gsap@3.12.5",
-    "gsap/ScrollTrigger": "https://esm.sh/gsap@3.12.5/ScrollTrigger",
-    "framer-motion": "https://esm.sh/framer-motion@11.0.8?external=react,react-dom",
-    "motion/react": "https://esm.sh/framer-motion@11.0.8?external=react,react-dom",
-    "clsx": "https://esm.sh/clsx@2.1.0?external=react,react-dom",
-    "tailwind-merge": "https://esm.sh/tailwind-merge@2.2.1?external=react,react-dom",
     "@google/genai": "https://esm.sh/@google/genai@0.1.0",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "three": "https://aistudiocdn.com/three@^0.181.2",
+    "gsap": "https://aistudiocdn.com/gsap@^3.13.0",
     "gsap/": "https://aistudiocdn.com/gsap@^3.13.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "vite": "https://aistudiocdn.com/vite@^7.2.4",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "clsx": "https://aistudiocdn.com/clsx@^2.1.1",
+    "tailwind-merge": "https://aistudiocdn.com/tailwind-merge@^3.4.0"
   }
 }
 </script>
