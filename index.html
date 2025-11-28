@@ -85,7 +85,11 @@
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
       }
     </style>
-  <script type="importmap">
+    <!-- 
+      IMPORTANTE: O importmap abaixo contém APENAS dependências que não estão no bundle do Vite.
+      React, Framer Motion, GSAP, etc., são carregados via package.json para evitar conflitos de versão.
+    -->
+    <script type="importmap">
 {
   "imports": {
     "@google/genai": "https://esm.sh/@google/genai@0.1.0",
@@ -104,8 +108,9 @@
   }
 }
 </script>
-</head>
+  </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
