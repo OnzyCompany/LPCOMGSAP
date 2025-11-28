@@ -4,8 +4,7 @@ import DatabaseWithRestApi from './ui/database-with-rest-api';
 const TechStack: React.FC = () => {
   return (
     <div className="flex justify-center items-center w-full min-h-[60vh]">
-        {/* Removed the glassmorphism container (bg-slate-900/40, border, etc) */}
-        <div className="w-full max-w-6xl relative group flex flex-col items-center">
+        <div className="w-full max-w-6xl relative group flex flex-col items-center bg-slate-900/40 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 md:p-12 shadow-2xl">
             
             <div className="flex flex-col md:flex-row items-center justify-between w-full gap-12">
                 <div className="flex-1 space-y-8 max-w-md">

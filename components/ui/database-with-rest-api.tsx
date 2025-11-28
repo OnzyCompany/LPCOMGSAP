@@ -35,11 +35,11 @@ const DatabaseWithRestApi = ({
       <style>{`
         @keyframes beam-flow {
           to {
-            stroke-dashoffset: -100; /* Moves the dash pattern along the path */
+            stroke-dashoffset: -100;
           }
         }
         .animate-beam {
-          stroke-dasharray: 10 90; /* 10px dash (beam), 90px gap */
+          stroke-dasharray: 10 90;
           animation: beam-flow 2s linear infinite;
         }
       `}</style>
@@ -97,7 +97,7 @@ const DatabaseWithRestApi = ({
         </defs>
       </svg>
       
-      {/* SVG for Buttons text (kept original structure for alignment) */}
+      {/* SVG for Buttons text */}
       <svg
         className="h-full sm:w-full text-slate-700 absolute inset-0 pointer-events-none"
         width="100%"
@@ -158,7 +158,7 @@ const DatabaseWithRestApi = ({
             <Zap className="size-4 text-yellow-500" />
             <span>Fast</span>
           </div>
-          {/* Circles */}
+          {/* Circles with Framer Motion */}
           <motion.div
             className="absolute -bottom-14 h-[100px] w-[100px] rounded-full border-t border-indigo-500/20 bg-indigo-500/5"
             animate={{
