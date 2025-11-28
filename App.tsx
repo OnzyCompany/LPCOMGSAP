@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,53 +11,18 @@ import TechStack from './components/TechStack';
 import Metrics from './components/Metrics';
 import Guarantees from './components/Guarantees';
 import Testimonials from './components/Testimonials';
+import Cursor from './components/Cursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const App: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
-  
-  // Custom Cursor
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const cursorOutlineRef = useRef<HTMLDivElement>(null);
 
   // Fake loading sequence
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
-  }, []);
-
-  // Optimized Cursor Logic with GSAP quickTo
-  useEffect(() => {
-    const cursor = cursorRef.current;
-    const outline = cursorOutlineRef.current;
-    
-    if (cursor && outline) {
-      // Use gsap.quickTo for high-performance following without lag
-      const xToCursor = gsap.quickTo(cursor, "x", { duration: 0.1, ease: "power3" });
-      const yToCursor = gsap.quickTo(cursor, "y", { duration: 0.1, ease: "power3" });
-      const xToOutline = gsap.quickTo(outline, "x", { duration: 0.3, ease: "power3" });
-      const yToOutline = gsap.quickTo(outline, "y", { duration: 0.3, ease: "power3" });
-
-      // Initial hide
-      gsap.set([cursor, outline], { xPercent: -50, yPercent: -50, opacity: 0 });
-
-      const moveCursor = (e: MouseEvent) => {
-        // Reveal on first move
-        if (cursor.style.opacity === '0') {
-           gsap.to([cursor, outline], { opacity: 1, duration: 0.3 });
-        }
-        
-        xToCursor(e.clientX);
-        yToCursor(e.clientY);
-        xToOutline(e.clientX);
-        yToOutline(e.clientY);
-      };
-
-      window.addEventListener('mousemove', moveCursor);
-      return () => window.removeEventListener('mousemove', moveCursor);
-    }
   }, []);
 
   // --- THE FLY THROUGH LOGIC ---
@@ -152,9 +118,7 @@ const App: React.FC = () => {
   return (
     <div ref={containerRef} className="bg-slate-950 text-slate-50 relative selection:bg-pink-500/30">
       
-      {/* Custom Cursor moved to top level - Fixed Visibility */}
-      <div ref={cursorRef} className="cursor-dot hidden md:block fixed z-[9999] pointer-events-none w-3 h-3 bg-indigo-500 rounded-full top-0 left-0 shadow-[0_0_10px_#6366f1]" />
-      <div ref={cursorOutlineRef} className="cursor-outline hidden md:block fixed z-[9999] pointer-events-none w-10 h-10 border border-indigo-500/50 rounded-full top-0 left-0" />
+      <Cursor />
 
       {/* SCROLL TRACK */}
       <div className="scroll-track h-[2500vh] w-full absolute top-0 left-0 z-[-1]" />
