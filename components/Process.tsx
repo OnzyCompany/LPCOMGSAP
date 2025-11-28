@@ -37,15 +37,15 @@ const ProcessConnectivity = () => (
     <div className="absolute inset-0 pointer-events-none z-0 hidden md:block">
         <style>{`
           @keyframes beam-flow-process {
-            to { stroke-dashoffset: -200; }
+            to { stroke-dashoffset: -400; }
           }
           .animate-beam-process {
-            stroke-dasharray: 20 180;
-            animation: beam-flow-process 2.5s linear infinite;
-            filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.8));
+            stroke-dasharray: 40 360;
+            animation: beam-flow-process 3s linear infinite;
+            filter: drop-shadow(0 0 12px rgba(99, 102, 241, 1));
           }
         `}</style>
-        <svg className="w-full h-full" preserveAspectRatio="none">
+        <svg className="w-full h-full overflow-visible">
              <defs>
                 <linearGradient id="process-beam" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#818cf8" stopOpacity="0" />
@@ -54,14 +54,28 @@ const ProcessConnectivity = () => (
                 </linearGradient>
             </defs>
             
-            <g fill="none" strokeWidth="4" strokeLinecap="round">
-                {/* Track */}
-                <path d="M 25% 25% L 75% 25% L 25% 75% L 75% 75%" stroke="rgba(255,255,255,0.05)" />
+            <g fill="none" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                {/* 
+                  Path logic for 2x2 grid:
+                  Start Top-Left (25% 25%) 
+                  -> Top-Right (75% 25%) 
+                  -> Bottom-Left (25% 75%) 
+                  -> Bottom-Right (75% 75%)
+                  This creates a "Z" like connection between the 4 cards
+                */}
                 
-                {/* Beam */}
+                {/* Track (Faint) */}
+                <path 
+                    d="M 25% 25% L 75% 25% L 25% 75% L 75% 75%" 
+                    stroke="rgba(255,255,255,0.05)" 
+                    strokeWidth="6"
+                />
+                
+                {/* Beam (Bright) */}
                 <path 
                     d="M 25% 25% L 75% 25% L 25% 75% L 75% 75%" 
                     stroke="url(#process-beam)" 
+                    strokeWidth="4"
                     className="animate-beam-process" 
                     pathLength="100"
                 />

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Github, Twitter, Linkedin, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { ChevronDown, CheckCircle2, Instagram } from 'lucide-react';
 import ThreeHero from './components/ThreeHero';
 import Features from './components/Features';
 import Portfolio from './components/Portfolio';
@@ -30,8 +30,16 @@ const App: React.FC = () => {
   useEffect(() => {
     const cursor = cursorRef.current;
     const outline = cursorOutlineRef.current;
+    
+    // Initial hide to prevent top-left glitch
+    if (cursor) cursor.style.opacity = '0';
+    if (outline) outline.style.opacity = '0';
+
     const moveCursor = (e: MouseEvent) => {
       if (cursor && outline) {
+        cursor.style.opacity = '1';
+        outline.style.opacity = '1';
+        
         // Direct DOM manipulation for performance
         cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
         
@@ -138,9 +146,9 @@ const App: React.FC = () => {
   return (
     <div ref={containerRef} className="bg-slate-950 text-slate-50 relative selection:bg-pink-500/30">
       
-      {/* Custom Cursor moved to top level */}
-      <div ref={cursorRef} className="cursor-dot hidden md:block mix-blend-difference fixed z-[9999] pointer-events-none w-2 h-2 bg-white rounded-full top-0 left-0" />
-      <div ref={cursorOutlineRef} className="cursor-outline hidden md:block mix-blend-difference fixed z-[9999] pointer-events-none w-10 h-10 border border-white/50 rounded-full top-0 left-0" />
+      {/* Custom Cursor moved to top level - Fixed Visibility */}
+      <div ref={cursorRef} className="cursor-dot hidden md:block fixed z-[9999] pointer-events-none w-3 h-3 bg-indigo-500 rounded-full top-0 left-0 shadow-[0_0_10px_#6366f1]" />
+      <div ref={cursorOutlineRef} className="cursor-outline hidden md:block fixed z-[9999] pointer-events-none w-10 h-10 border border-indigo-500/50 rounded-full top-0 left-0" />
 
       {/* SCROLL TRACK */}
       <div className="scroll-track h-[2500vh] w-full absolute top-0 left-0 z-[-1]" />
@@ -151,9 +159,14 @@ const App: React.FC = () => {
         
         <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12 flex justify-between items-center bg-gradient-to-b from-slate-900/80 to-transparent backdrop-blur-[2px]">
           <div className="font-display font-bold text-3xl tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">ONZY.</div>
-          <button className="hidden md:block px-6 py-2 rounded-full border border-slate-600 bg-slate-900/50 hover:bg-white hover:text-black hover:border-white transition-all duration-300 text-sm font-medium">
+          <a 
+            href="https://wa.me/5573998306902"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:block px-6 py-2 rounded-full border border-slate-600 bg-slate-900/50 hover:bg-white hover:text-black hover:border-white transition-all duration-300 text-sm font-medium"
+          >
               Fale Conosco
-          </button>
+          </a>
         </nav>
 
         {/* --- SECTION 1: HERO --- */}
@@ -179,8 +192,8 @@ const App: React.FC = () => {
                     </button>
                 </div>
             </div>
-            {/* Seta Centralizada com w-full */}
-            <div className="absolute bottom-10 w-full flex flex-col items-center gap-2 opacity-60 animate-bounce">
+            {/* Seta Centralizada com w-full e left-0 */}
+            <div className="absolute bottom-10 left-0 w-full flex flex-col items-center gap-2 opacity-60 animate-bounce">
                 <span className="text-xs uppercase tracking-widest text-slate-400">Role para entrar</span>
                 <ChevronDown className="w-6 h-6 text-slate-400" />
             </div>
@@ -325,11 +338,12 @@ const App: React.FC = () => {
                 </div>
 
                 <footer className="mt-20 border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm gap-4">
-                    <div>© 2024 Onzy Studios. Todos os átomos reservados.</div>
+                    <div>© 2024 <a href="https://www.instagram.com/onzy.company/" target="_blank" className="hover:text-white transition-colors">Onzy Company</a>. Todos os átomos reservados.</div>
                     <div className="flex gap-6">
-                        <a href="#" className="hover:text-white transition-colors"><Github className="w-5 h-5"/></a>
-                        <a href="#" className="hover:text-white transition-colors"><Twitter className="w-5 h-5"/></a>
-                        <a href="#" className="hover:text-white transition-colors"><Linkedin className="w-5 h-5"/></a>
+                        <a href="https://www.instagram.com/onzy.company/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
+                           <Instagram className="w-5 h-5"/>
+                           <span className="hidden md:inline">Instagram</span>
+                        </a>
                     </div>
                 </footer>
              </div>
